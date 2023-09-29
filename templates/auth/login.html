@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form class="form-signin" method="post">
+        {% csrf_token %}
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+          {{ error }}
+        </div>
+        {% endif %}
+        <h1 class="h3 mb-3 font-weight-normal text-center">Please Login</h1>
+
+        <div class="form-group">
+          <label for="inputEmail">Email address</label>
+          <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Your registered email address" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <label for="inputPassword">Password</label>
+          <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Security password" required>
+        </div>
+
+        <div class="text-center">
+          <p>Don't have an account? <a href="{% url 'register_attempt' %}">Register</a></p>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-primary btn-block glow-on-hover glow-button" type="submit">Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  .container {
+    background-color: #f7f7f7;
+    border-radius: 30px;
+    padding: 20px;
+  }
+
+  .form-signin {
+    background-color: white;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .form-group {
+    margin-bottom: 30px;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  /* Add animation for button glow */
+  .glow-button {
+    animation: glow 1s infinite alternate;
+  }
+
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+      box-shadow: 0 0 12px 12px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  /* Add animation for button scale */
+  .glow-on-hover {
+    transition: transform 0.3s;
+  }
+
+  .glow-on-hover:hover {
+    transform: scale(1.05);
+  }
+</style>
+{% endblock %}
